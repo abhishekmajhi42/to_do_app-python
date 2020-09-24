@@ -1,0 +1,45 @@
+
+<head>
+<head>
+    <meta >
+    <title>Title</title>
+    {%load static%}
+        <link rel="stylesheet" href="{%static 'style.css'%}">
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+<h1>To Do List</h1>
+
+<br>
+<br>
+<div class="part1">
+<form action="addTodoItem" method = "post">
+    {% csrf_token %}
+    <input type="text" name="content">
+    <br>
+    <br>
+    <input type="submit" value="Add Todo Item">
+</form>
+</div>
+
+<div class="part2">
+<ol>
+    {% for i in all_items %}
+    <li>
+        <p class="text">  {{i.content}}</p>
+        <form action="/deleteTodoItem/{{i.id}}/" method = "post">
+            {% csrf_token %}
+            <br>
+            <input type="submit" value="Delete">
+    </li>
+    {% endfor %}
+</ol>
+
+</form>
+</div>
+</body>
+</html>
